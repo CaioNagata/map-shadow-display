@@ -100,28 +100,46 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
             {selectedVehicleData.address}
           </div>
 
-          {/* Information Grid */}
-          <div className="grid grid-cols-3 gap-4 text-xs">
+          {/* Information List - Single Column */}
+          <div className="text-xs space-y-3">
             <div>
               <div className="font-semibold text-red-400 mb-1">Alerta</div>
-              <div className="mb-2">{selectedVehicleData.lastAlert}</div>
-              <div className="font-semibold mb-1">Último ping</div>
-              <div>{selectedVehicleData.lastPing}</div>
+              <div>{selectedVehicleData.lastAlert}</div>
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Quilometragem</div>
-              <div className="mb-2">Contrato</div>
+              <div className="font-semibold mb-1">Contrato</div>
               <div className="text-red-400">{selectedVehicleData.contract}</div>
             </div>
             
             <div>
               <div className="font-semibold mb-1">Velocidade</div>
-              <div className="mb-2">{selectedVehicleData.speed}</div>
+              <div>{selectedVehicleData.speed}</div>
+            </div>
+            
+            <div>
               <div className="font-semibold mb-1">Bat. Principal</div>
-              <div className="mb-1">{selectedVehicleData.mainBattery}</div>
+              <div>{selectedVehicleData.mainBattery}</div>
+            </div>
+            
+            <div>
               <div className="font-semibold mb-1">Bat. Secundária</div>
               <div>{selectedVehicleData.secondaryBattery}</div>
+            </div>
+            
+            <div>
+              <div className="font-semibold mb-1">Último ping</div>
+              <div>{selectedVehicleData.lastPing}</div>
+            </div>
+            
+            <div>
+              <div className="font-semibold mb-1">Violação carenagem</div>
+              <div>-</div>
+            </div>
+            
+            <div>
+              <div className="font-semibold mb-1">Violação Blindagem</div>
+              <div>-</div>
             </div>
           </div>
         </div>
