@@ -29,7 +29,7 @@ interface VehicleSidebarProps {
 
 const mockVehicles: Vehicle[] = [
   {
-    id: "1",
+    id: "1169933",
     name: "ANDERSON ANDRADE DOS SANTOS",
     phone: "5573 998701636",
     imei: "Mottu Sport ESD - Imei: 218013266 | TBI-IF96",
@@ -57,100 +57,109 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
   const selectedVehicleData = mockVehicles.find(v => v.id === selectedVehicle);
 
   return (
-    <div className="w-96 bg-white text-black h-screen flex flex-col border-r">
-      {/* Header with vehicle info */}
+    <div className="w-96 bg-black text-white h-screen flex flex-col border-r border-gray-700">
+      {/* Violation Alert Container */}
       {selectedVehicleData && (
-        <div className="p-4 border-b">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-lg font-bold">{selectedVehicleData.id}169933 - {selectedVehicleData.name}</span>
-            <div className="flex items-center space-x-2">
-              <Phone className="w-4 h-4 text-green-600" />
-              <span className="text-sm">{selectedVehicleData.phone}</span>
-              <Badge className="bg-green-500 text-white text-xs">Pgto em dia</Badge>
-            </div>
+        <div className="p-4 bg-red-900 border-b border-red-700">
+          <div className="text-sm font-semibold text-red-100 mb-1">Violação</div>
+          <div className="text-lg font-bold text-white">{selectedVehicleData.violation}</div>
+        </div>
+      )}
+
+      {/* Vehicle Info Container */}
+      {selectedVehicleData && (
+        <div className="p-4 border-b border-gray-700">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-lg font-bold text-white">
+              {selectedVehicleData.id} - {selectedVehicleData.name}
+            </span>
           </div>
           
-          <div className="text-xs text-gray-600 mb-4">
+          <div className="flex items-center space-x-2 mb-3">
+            <Phone className="w-4 h-4 text-green-400" />
+            <span className="text-sm text-gray-300">{selectedVehicleData.phone}</span>
+            <Badge className="bg-green-600 text-white text-xs">Pgto em dia</Badge>
+          </div>
+          
+          <div className="text-xs text-gray-400 mb-3">
             {selectedVehicleData.imei}
           </div>
           
-          <div className="text-xs text-gray-600 mb-4">
+          <div className="text-xs text-gray-400 mb-4">
             {selectedVehicleData.address}
           </div>
 
           {/* Information Grid */}
           <div className="grid grid-cols-3 gap-4 text-xs">
             <div>
-              <div className="font-semibold text-red-600 mb-1">Alerta</div>
-              <div className="mb-2">{selectedVehicleData.lastAlert}</div>
-              <div className="font-semibold mb-1">Último ping</div>
-              <div>{selectedVehicleData.lastPing}</div>
+              <div className="font-semibold text-red-400 mb-1">Alerta</div>
+              <div className="mb-2 text-gray-300">{selectedVehicleData.lastAlert}</div>
+              <div className="font-semibold mb-1 text-gray-200">Último ping</div>
+              <div className="text-gray-300">{selectedVehicleData.lastPing}</div>
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Violação</div>
-              <div className="mb-2">{selectedVehicleData.violation}</div>
-              <div className="font-semibold mb-1">Quilometragem</div>
-              <div className="mb-2">Contrato</div>
-              <div className="text-red-600">{selectedVehicleData.contract}</div>
+              <div className="font-semibold mb-1 text-gray-200">Velocidade</div>
+              <div className="mb-2 text-gray-300">{selectedVehicleData.speed}</div>
+              <div className="font-semibold mb-1 text-gray-200">Quilometragem</div>
+              <div className="mb-2 text-gray-300">Contrato</div>
+              <div className="text-red-400">{selectedVehicleData.contract}</div>
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Velocidade</div>
-              <div className="mb-2">{selectedVehicleData.speed}</div>
-              <div className="font-semibold mb-1">Bat. Principal</div>
-              <div className="mb-1">{selectedVehicleData.mainBattery}</div>
-              <div className="font-semibold mb-1">Bat. Secundária</div>
-              <div>{selectedVehicleData.secondaryBattery}</div>
+              <div className="font-semibold mb-1 text-gray-200">Bat. Principal</div>
+              <div className="mb-1 text-gray-300">{selectedVehicleData.mainBattery}</div>
+              <div className="font-semibold mb-1 text-gray-200">Bat. Secundária</div>
+              <div className="text-gray-300">{selectedVehicleData.secondaryBattery}</div>
             </div>
           </div>
         </div>
       )}
 
       {/* Activities Section */}
-      <div className="p-4 border-b">
-        <h3 className="font-semibold mb-3">Atividades</h3>
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white mb-2">
+      <div className="p-4 border-b border-gray-700">
+        <h3 className="font-semibold mb-3 text-white">Atividades</h3>
+        <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
           CARREGAR ATIVIDADES
         </Button>
       </div>
 
-      {/* Action Buttons */}
+      {/* Action Buttons - Smaller */}
       <div className="p-4 space-y-2">
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+        <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-xs py-2">
           LOCALIZAÇÃO ALERTA
         </Button>
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+        <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-xs py-2">
           TELEMETRIA RÁPIDA
         </Button>
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+        <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-xs py-2">
           CHAMAR WHATSAPP
         </Button>
       </div>
 
       {/* History Section */}
       <div className="flex-1 p-4 overflow-y-auto">
-        <div className="bg-gray-50 p-3 rounded mb-2">
-          <div className="font-semibold text-sm mb-1">Histórico</div>
-          <div className="text-xs text-gray-600 mb-1">
+        <div className="bg-gray-800 p-3 rounded mb-2">
+          <div className="font-semibold text-sm mb-1 text-white">Histórico</div>
+          <div className="text-xs text-gray-400 mb-1">
             Deiverson soares de andrade - 25/06/2025 22:29
           </div>
-          <div className="text-xs">
+          <div className="text-xs text-gray-300">
             <span className="font-semibold">Evento:</span>
           </div>
-          <div className="text-xs">
+          <div className="text-xs text-gray-300">
             <span className="font-semibold">Descrição:</span> SEGUE COMUNICANDO SEM ALTERAÇÃO OU EVOLUÇÃO NO ALERTA
           </div>
         </div>
 
-        <div className="bg-gray-50 p-3 rounded">
-          <div className="text-xs text-gray-600 mb-1">
+        <div className="bg-gray-800 p-3 rounded">
+          <div className="text-xs text-gray-400 mb-1">
             MATHEUS HENRIQUE DA SILVA PEREIRA - 24/06/2025 20:46
           </div>
-          <div className="text-xs">
+          <div className="text-xs text-gray-300">
             <span className="font-semibold">Evento:</span>
           </div>
-          <div className="text-xs">
+          <div className="text-xs text-gray-300">
             <span className="font-semibold">Descrição:</span> SEGUE COMUNICANDO SEM ALTERAÇÃO OU EVOLUÇÃO NO ALERTA
           </div>
         </div>
