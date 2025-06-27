@@ -60,12 +60,24 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
     <div className="w-96 bg-black text-white h-screen flex flex-col border-r border-gray-700">
       {/* Violation Header */}
       {selectedVehicleData && (
-        <div className="bg-red-600 p-4 text-center">
-          <div className="text-xl font-bold text-white">
-            Violação
+        <div className="bg-red-600 p-4 text-center flex justify-between items-center">
+          <div className="flex-1">
+            <div className="text-xl font-bold text-white">
+              Violação
+            </div>
+            <div className="text-lg font-semibold text-white mt-1">
+              {selectedVehicleData.violation}
+            </div>
           </div>
-          <div className="text-lg font-semibold text-white mt-1">
-            {selectedVehicleData.violation}
+          <Badge className="bg-green-500 text-white text-xs ml-4">Pgto em dia</Badge>
+        </div>
+      )}
+
+      {/* Vehicle Header */}
+      {selectedVehicleData && (
+        <div className="bg-gray-800 p-4 text-center border-b border-gray-700">
+          <div className="text-lg font-bold text-white">
+            {selectedVehicleData.id}169933 - {selectedVehicleData.name}
           </div>
         </div>
       )}
@@ -74,11 +86,9 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
       {selectedVehicleData && (
         <div className="p-4 border-b border-gray-700">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-lg font-bold">{selectedVehicleData.id}169933 - {selectedVehicleData.name}</span>
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 text-green-600" />
               <span className="text-sm">{selectedVehicleData.phone}</span>
-              <Badge className="bg-green-500 text-white text-xs">Pgto em dia</Badge>
             </div>
           </div>
           
