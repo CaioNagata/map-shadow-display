@@ -57,10 +57,22 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
   const selectedVehicleData = mockVehicles.find(v => v.id === selectedVehicle);
 
   return (
-    <div className="w-96 bg-white text-black h-screen flex flex-col border-r">
-      {/* Header with vehicle info */}
+    <div className="w-96 bg-black text-white h-screen flex flex-col border-r border-gray-700">
+      {/* Violation Header */}
       {selectedVehicleData && (
-        <div className="p-4 border-b">
+        <div className="bg-red-600 p-4 text-center">
+          <div className="text-xl font-bold text-white">
+            Violação
+          </div>
+          <div className="text-lg font-semibold text-white mt-1">
+            {selectedVehicleData.violation}
+          </div>
+        </div>
+      )}
+
+      {/* Vehicle info */}
+      {selectedVehicleData && (
+        <div className="p-4 border-b border-gray-700">
           <div className="flex items-center justify-between mb-2">
             <span className="text-lg font-bold">{selectedVehicleData.id}169933 - {selectedVehicleData.name}</span>
             <div className="flex items-center space-x-2">
@@ -70,29 +82,27 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
             </div>
           </div>
           
-          <div className="text-xs text-gray-600 mb-4">
+          <div className="text-xs text-gray-400 mb-4">
             {selectedVehicleData.imei}
           </div>
           
-          <div className="text-xs text-gray-600 mb-4">
+          <div className="text-xs text-gray-400 mb-4">
             {selectedVehicleData.address}
           </div>
 
           {/* Information Grid */}
           <div className="grid grid-cols-3 gap-4 text-xs">
             <div>
-              <div className="font-semibold text-red-600 mb-1">Alerta</div>
+              <div className="font-semibold text-red-400 mb-1">Alerta</div>
               <div className="mb-2">{selectedVehicleData.lastAlert}</div>
               <div className="font-semibold mb-1">Último ping</div>
               <div>{selectedVehicleData.lastPing}</div>
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Violação</div>
-              <div className="mb-2">{selectedVehicleData.violation}</div>
               <div className="font-semibold mb-1">Quilometragem</div>
               <div className="mb-2">Contrato</div>
-              <div className="text-red-600">{selectedVehicleData.contract}</div>
+              <div className="text-red-400">{selectedVehicleData.contract}</div>
             </div>
             
             <div>
@@ -108,7 +118,7 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
       )}
 
       {/* Activities Section */}
-      <div className="p-4 border-b">
+      <div className="p-4 border-b border-gray-700">
         <h3 className="font-semibold mb-3">Atividades</h3>
         <Button className="w-full bg-green-600 hover:bg-green-700 text-white mb-2">
           CARREGAR ATIVIDADES
@@ -117,22 +127,22 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
 
       {/* Action Buttons */}
       <div className="p-4 space-y-2">
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+        <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2">
           LOCALIZAÇÃO ALERTA
         </Button>
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+        <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2">
           TELEMETRIA RÁPIDA
         </Button>
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+        <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2">
           CHAMAR WHATSAPP
         </Button>
       </div>
 
       {/* History Section */}
       <div className="flex-1 p-4 overflow-y-auto">
-        <div className="bg-gray-50 p-3 rounded mb-2">
+        <div className="bg-gray-800 p-3 rounded mb-2">
           <div className="font-semibold text-sm mb-1">Histórico</div>
-          <div className="text-xs text-gray-600 mb-1">
+          <div className="text-xs text-gray-400 mb-1">
             Deiverson soares de andrade - 25/06/2025 22:29
           </div>
           <div className="text-xs">
@@ -143,8 +153,8 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
           </div>
         </div>
 
-        <div className="bg-gray-50 p-3 rounded">
-          <div className="text-xs text-gray-600 mb-1">
+        <div className="bg-gray-800 p-3 rounded">
+          <div className="text-xs text-gray-400 mb-1">
             MATHEUS HENRIQUE DA SILVA PEREIRA - 24/06/2025 20:46
           </div>
           <div className="text-xs">
