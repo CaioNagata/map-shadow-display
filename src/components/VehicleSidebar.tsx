@@ -127,12 +127,14 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
 
       {/* Action Buttons */}
       <div className="p-4 space-y-2">
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2">
-          LOCALIZAÇÃO ALERTA
-        </Button>
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2">
-          TELEMETRIA RÁPIDA
-        </Button>
+        <div className="flex space-x-2">
+          <Button className="flex-1 bg-green-600 hover:bg-green-700 text-white text-sm py-2">
+            LOCALIZAÇÃO ALERTA
+          </Button>
+          <Button className="flex-1 bg-green-600 hover:bg-green-700 text-white text-sm py-2">
+            TELEMETRIA RÁPIDA
+          </Button>
+        </div>
         <Button className="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2">
           CHAMAR WHATSAPP
         </Button>
