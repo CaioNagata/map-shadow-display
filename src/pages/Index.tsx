@@ -12,7 +12,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex bg-background">
+    <div className="h-screen flex bg-background overflow-hidden">
       <VehicleSidebar 
         selectedVehicle={selectedVehicle}
         onVehicleSelect={setSelectedVehicle}

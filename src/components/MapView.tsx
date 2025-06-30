@@ -23,7 +23,7 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
 
   if (showTokenInput) {
     return (
-      <div className="flex-1 bg-gray-100 flex items-center justify-center">
+      <div className="flex-1 bg-gray-100 flex items-center justify-center h-screen">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full mx-4">
           <div className="text-center mb-6">
             <MapPin className="w-12 h-12 text-green-600 mx-auto mb-4" />
@@ -82,7 +82,7 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
   }
 
   return (
-    <div className="flex-1 relative bg-gray-100">
+    <div className="flex-1 relative bg-gray-100 h-screen overflow-hidden">
       {/* Map Header */}
       <div className="absolute top-0 left-0 right-0 z-10 bg-white/90 backdrop-blur-sm border-b p-4">
         <div className="flex items-center justify-between">

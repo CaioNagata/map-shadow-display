@@ -57,15 +57,15 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
   const selectedVehicleData = mockVehicles.find(v => v.id === selectedVehicle);
 
   return (
-    <div className="w-96 bg-black text-white h-screen flex flex-col border-r border-gray-700">
+    <div className="w-96 bg-black text-white h-screen flex flex-col border-r border-gray-700 overflow-y-auto">
       {/* Violation Header */}
       {selectedVehicleData && (
-        <div className="bg-red-600 p-4 text-center flex justify-between items-center">
+        <div className="bg-red-600 p-2 text-center flex justify-between items-center">
           <div className="flex-1">
-            <div className="text-xl font-bold text-white">
+            <div className="text-sm font-bold text-white">
               Violação
             </div>
-            <div className="text-lg font-semibold text-white mt-1">
+            <div className="text-xs font-semibold text-white mt-1">
               {selectedVehicleData.violation}
             </div>
           </div>
@@ -75,8 +75,8 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
 
       {/* Vehicle Header */}
       {selectedVehicleData && (
-        <div className="bg-gray-800 p-4 text-center border-b border-gray-700">
-          <div className="text-lg font-bold text-white">
+        <div className="bg-gray-600 p-2 text-center border-b border-gray-700">
+          <div className="text-sm font-bold text-white">
             {selectedVehicleData.id}169933 - {selectedVehicleData.name}
           </div>
         </div>
@@ -100,46 +100,38 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
             {selectedVehicleData.address}
           </div>
 
-          {/* Information List - Single Column */}
-          <div className="text-xs space-y-3">
+          {/* Information List - Inline Format */}
+          <div className="text-xs space-y-2">
             <div>
-              <div className="font-semibold text-red-400 mb-1">Alerta</div>
-              <div>{selectedVehicleData.lastAlert}</div>
+              <span className="font-semibold text-red-400">Alerta:</span> {selectedVehicleData.lastAlert}
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Contrato</div>
-              <div className="text-red-400">{selectedVehicleData.contract}</div>
+              <span className="font-semibold">Contrato:</span> <span className="text-red-400">{selectedVehicleData.contract}</span>
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Velocidade</div>
-              <div>{selectedVehicleData.speed}</div>
+              <span className="font-semibold">Velocidade:</span> {selectedVehicleData.speed}
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Bat. Principal</div>
-              <div>{selectedVehicleData.mainBattery}</div>
+              <span className="font-semibold">Bat. Principal:</span> {selectedVehicleData.mainBattery}
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Bat. Secundária</div>
-              <div>{selectedVehicleData.secondaryBattery}</div>
+              <span className="font-semibold">Bat. Secundária:</span> {selectedVehicleData.secondaryBattery}
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Último ping</div>
-              <div>{selectedVehicleData.lastPing}</div>
+              <span className="font-semibold">Último ping:</span> {selectedVehicleData.lastPing}
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Violação carenagem</div>
-              <div>-</div>
+              <span className="font-semibold">Violação carenagem:</span> -
             </div>
             
             <div>
-              <div className="font-semibold mb-1">Violação Blindagem</div>
-              <div>-</div>
+              <span className="font-semibold">Violação Blindagem:</span> -
             </div>
           </div>
         </div>
