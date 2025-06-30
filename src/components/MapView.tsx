@@ -85,21 +85,13 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
     <div className="flex-1 relative bg-gray-100 h-screen overflow-hidden">
       {/* Map Header */}
       <div className="absolute top-0 left-0 right-0 z-10 bg-white/90 backdrop-blur-sm border-b p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex space-x-2">
-            <Button size="sm" className="bg-green-600 hover:bg-green-700">
-              CARREGAR ATIVIDADES
-            </Button>
-            <Button size="sm" className="bg-green-600 hover:bg-green-700">
-              LOCALIZAÇÃO ALERTA
-            </Button>
-            <Button size="sm" className="bg-green-600 hover:bg-green-700">
-              TELEMETRIA RÁPIDA
-            </Button>
-            <Button size="sm" className="bg-green-600 hover:bg-green-700">
-              CHAMAR WHATSAPP
-            </Button>
-          </div>
+        <div className="flex items-center justify-center space-x-2">
+          <Button size="sm" className="bg-green-600 hover:bg-green-700">
+            LOCALIZAÇÃO ALERTA
+          </Button>
+          <Button size="sm" className="bg-green-600 hover:bg-green-700">
+            TELEMETRIA RÁPIDA
+          </Button>
         </div>
       </div>
 
