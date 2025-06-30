@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -11,6 +10,8 @@ interface MapViewProps {
 const MapView = ({ selectedVehicle }: MapViewProps) => {
   const [mapToken, setMapToken] = useState("");
   const [showTokenInput, setShowTokenInput] = useState(true);
+  const [startDate, setStartDate] = useState("30/06/2025 08:33");
+  const [endDate, setEndDate] = useState("30/06/2025 11:33");
 
   // Mock vehicle locations for demonstration
   const vehicleLocations = [
@@ -84,14 +85,41 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
   return (
     <div className="flex-1 relative bg-gray-100 h-screen overflow-hidden">
       {/* Map Header */}
-      <div className="absolute top-0 left-0 right-0 z-10 bg-white/90 backdrop-blur-sm border-b p-4">
-        <div className="flex items-center justify-center space-x-2">
-          <Button size="sm" className="bg-green-600 hover:bg-green-700">
+      <div className="absolute top-0 left-0 right-0 z-10 bg-black border-b p-4">
+        <div className="flex items-center justify-center space-x-2 flex-wrap">
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-xs px-2 py-1">
             LOCALIZAÇÃO ALERTA
           </Button>
-          <Button size="sm" className="bg-green-600 hover:bg-green-700">
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-xs px-2 py-1">
             TELEMETRIA RÁPIDA
           </Button>
+          <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1">
+            DESCARTAR
+          </Button>
+          <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1">
+            OCORRÊNCIA
+          </Button>
+          
+          <div className="flex items-center space-x-2">
+            <div className="flex flex-col">
+              <label className="text-white text-xs mb-1">Data/Hora Início *</label>
+              <Input
+                type="text"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="w-32 h-8 text-xs bg-white"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-white text-xs mb-1">Data/Hora Fim *</label>
+              <Input
+                type="text"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="w-32 h-8 text-xs bg-white"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -112,7 +140,7 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
       </div>
 
       {/* Mock Map Display */}
-      <div className="w-full h-full bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+      <div className="w-full h-full bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center pt-20">
         <div className="relative w-full h-full bg-green-100/30">
           {/* Simulated map markers */}
           {vehicleLocations.map((location, index) => (
