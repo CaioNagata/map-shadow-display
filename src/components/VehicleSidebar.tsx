@@ -4,6 +4,7 @@ import { Search, MapPin, Clock, Battery, Signal, Menu, User, Phone } from "lucid
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface Vehicle {
   id: string;
@@ -142,39 +143,72 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
         </div>
       )}
 
-      {/* Activities Section */}
-      <div className="p-4 border-b border-gray-700">
-        <h3 className="font-semibold mb-3">Atividades</h3>
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white mb-2">
-          CARREGAR ATIVIDADES
-        </Button>
-      </div>
+      {/* Activities and History Tabs */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="p-4">
+          <Button 
+            className="w-full mb-4 bg-green-600 hover:bg-green-700"
+            size="sm"
+          >
+            CARREGAR ATIVIDADES
+          </Button>
+          
+          <Tabs defaultValue="activities" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="activities">Atividades</TabsTrigger>
+              <TabsTrigger value="history">Histórico</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="activities" className="mt-4">
+              <div className="space-y-3">
+                <div className="text-sm">
+                  <div className="font-medium">Leandro Lumes Nascimento - 05/08/2025 20:54</div>
+                  <div className="text-gray-400">Evento: DESCONECTADO DA BATERIA PRINCIPAL + VIOLAÇÃO DE BLINDAGEM</div>
+                  <div className="text-gray-400">Descrição: Moto sem violação</div>
+                </div>
+                
+                <div className="text-sm">
+                  <div className="font-medium">Alessandra Roling - 31/07/2025 11:04</div>
+                  <div className="text-gray-400">Evento: VIOLAÇÃO DE BLINDAGEM + DESCONECTADO DA BATERIA PRINCIPAL</div>
+                  <div className="text-gray-400">Descrição: Moto sem violação</div>
+                </div>
+                
+                <div className="text-sm">
+                  <div className="font-medium">Leandro Lumes Nascimento - 30/07/2025 23:24</div>
+                  <div className="text-gray-400">Evento: VIOLAÇÃO DE BLINDAGEM + DESCONECTADO DA BATERIA PRINCIPAL</div>
+                  <div className="text-gray-400">Descrição: Moto sem violação</div>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="history" className="mt-4">
+              <div className="space-y-3">
+                <div className="bg-gray-800 p-3 rounded">
+                  <div className="text-xs text-gray-400 mb-1">
+                    Deiverson soares de andrade - 25/06/2025 22:29
+                  </div>
+                  <div className="text-xs">
+                    <span className="font-semibold">Evento:</span>
+                  </div>
+                  <div className="text-xs">
+                    <span className="font-semibold">Descrição:</span> SEGUE COMUNICANDO SEM ALTERAÇÃO OU EVOLUÇÃO NO ALERTA
+                  </div>
+                </div>
 
-      {/* History Section */}
-      <div className="flex-1 p-4 overflow-y-auto">
-        <div className="bg-gray-800 p-3 rounded mb-2">
-          <div className="font-semibold text-sm mb-1">Histórico</div>
-          <div className="text-xs text-gray-400 mb-1">
-            Deiverson soares de andrade - 25/06/2025 22:29
-          </div>
-          <div className="text-xs">
-            <span className="font-semibold">Evento:</span>
-          </div>
-          <div className="text-xs">
-            <span className="font-semibold">Descrição:</span> SEGUE COMUNICANDO SEM ALTERAÇÃO OU EVOLUÇÃO NO ALERTA
-          </div>
-        </div>
-
-        <div className="bg-gray-800 p-3 rounded">
-          <div className="text-xs text-gray-400 mb-1">
-            MATHEUS HENRIQUE DA SILVA PEREIRA - 24/06/2025 20:46
-          </div>
-          <div className="text-xs">
-            <span className="font-semibold">Evento:</span>
-          </div>
-          <div className="text-xs">
-            <span className="font-semibold">Descrição:</span> SEGUE COMUNICANDO SEM ALTERAÇÃO OU EVOLUÇÃO NO ALERTA
-          </div>
+                <div className="bg-gray-800 p-3 rounded">
+                  <div className="text-xs text-gray-400 mb-1">
+                    MATHEUS HENRIQUE DA SILVA PEREIRA - 24/06/2025 20:46
+                  </div>
+                  <div className="text-xs">
+                    <span className="font-semibold">Evento:</span>
+                  </div>
+                  <div className="text-xs">
+                    <span className="font-semibold">Descrição:</span> SEGUE COMUNICANDO SEM ALTERAÇÃO OU EVOLUÇÃO NO ALERTA
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>

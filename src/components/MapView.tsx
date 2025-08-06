@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { MapPin, Layers, Navigation, ZoomIn, ZoomOut } from "lucide-react";
+import { MapPin, Layers, Navigation, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 
 interface MapViewProps {
   selectedVehicle: string | null;
@@ -83,66 +83,59 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
   }
 
   return (
-    <div className="flex-1 relative bg-gray-100 h-screen overflow-hidden">
-      {/* Map Header */}
-      <div className="absolute top-0 left-0 right-0 z-10 bg-black border-b p-4">
-        <div className="flex items-center justify-center space-x-2 flex-wrap">
-          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-xs px-2 py-1">
-            LOCALIZAÇÃO ALERTA
-          </Button>
-          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-xs px-2 py-1">
-            TELEMETRIA RÁPIDA
-          </Button>
-          <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1">
-            DESCARTAR
-          </Button>
-          <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1">
-            OCORRÊNCIA
-          </Button>
-          
-          <div className="flex items-center space-x-2">
-            <div className="flex flex-col">
-              <label className="text-white text-xs mb-1">Data/Hora Início *</label>
-              <Input
-                type="text"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                className="w-32 h-8 text-xs bg-white"
-              />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-white text-xs mb-1">Data/Hora Fim *</label>
-              <Input
-                type="text"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                className="w-32 h-8 text-xs bg-white"
-              />
-            </div>
+    <div className="flex-1 flex flex-col bg-gray-100 h-screen">
+      {/* Map Header - Independent */}
+      <div className="bg-black border-b p-4 z-10">
+        <div className="flex items-center justify-center space-x-4">
+          <div className="flex flex-col">
+            <label className="text-white text-xs mb-1">Data/Hora Início *</label>
+            <Input
+              type="text"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className="w-32 h-8 text-xs bg-white"
+            />
           </div>
+          <div className="flex flex-col">
+            <label className="text-white text-xs mb-1">Data/Hora Fim *</label>
+            <Input
+              type="text"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className="w-32 h-8 text-xs bg-white"
+            />
+          </div>
+          <Button size="sm" variant="outline" className="bg-white/90 backdrop-blur-sm mt-4">
+            <RotateCcw className="w-4 h-4" />
+          </Button>
         </div>
       </div>
 
-      {/* Map Controls */}
-      <div className="absolute top-20 right-4 z-10 flex flex-col space-y-2">
-        <Button size="sm" variant="outline" className="bg-white/90 backdrop-blur-sm">
-          <ZoomIn className="w-4 h-4" />
-        </Button>
-        <Button size="sm" variant="outline" className="bg-white/90 backdrop-blur-sm">
-          <ZoomOut className="w-4 h-4" />
-        </Button>
-        <Button size="sm" variant="outline" className="bg-white/90 backdrop-blur-sm">
-          <Layers className="w-4 h-4" />
-        </Button>
-        <Button size="sm" variant="outline" className="bg-white/90 backdrop-blur-sm">
-          <Navigation className="w-4 h-4" />
-        </Button>
-      </div>
+      {/* Map Container - Independent */}
+      <div className="flex-1 relative overflow-hidden">
+        {/* Map Controls */}
+        <div className="absolute top-4 right-4 z-10 flex flex-col space-y-2">
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
+            <MapPin className="w-5 h-5" />
+          </Button>
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
+            <Navigation className="w-5 h-5" />
+          </Button>
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
+            <ZoomIn className="w-5 h-5" />
+          </Button>
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
+            <ZoomOut className="w-5 h-5" />
+          </Button>
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
+            <Layers className="w-5 h-5" />
+          </Button>
+        </div>
 
-      {/* Mock Map Display */}
-      <div className="w-full h-full bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center pt-20">
-        <div className="relative w-full h-full bg-green-100/30">
-          {/* Simulated map markers */}
+        {/* Mock Map Display */}
+        <div className="w-full h-full bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+            <div className="relative w-full h-full bg-green-100/30">
+            {/* Simulated map markers */}
           {vehicleLocations.map((location, index) => (
             <div
               key={location.id}
@@ -169,30 +162,31 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
           {/* Map attribution */}
           <div className="absolute bottom-4 right-4 bg-white/90 px-2 py-1 rounded text-xs text-gray-600">
             Map demo - Connect Mapbox for full functionality
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Selected Vehicle Info Panel */}
-      {selectedVehicle && (
-        <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-sm">
-          <h3 className="font-semibold text-lg mb-2">Vehicle Details</h3>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-gray-600">Status:</span>
-              <span className="font-medium">Online</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Speed:</span>
-              <span className="font-medium">15 km/h</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Last Update:</span>
-              <span className="font-medium">2 min ago</span>
+        {/* Selected Vehicle Info Panel */}
+        {selectedVehicle && (
+          <div className="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg p-4 max-w-sm">
+            <h3 className="font-semibold text-lg mb-2">Vehicle Details</h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-gray-600">Status:</span>
+                <span className="font-medium">Online</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Speed:</span>
+                <span className="font-medium">15 km/h</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Last Update:</span>
+                <span className="font-medium">2 min ago</span>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
