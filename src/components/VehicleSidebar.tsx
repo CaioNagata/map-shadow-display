@@ -133,6 +133,10 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
             </div>
             
             <div>
+              <span className="font-semibold">Último GPS:</span> 26/06/2025 20:52 (9 min)
+            </div>
+            
+            <div>
               <span className="font-semibold">Violação carenagem:</span> -
             </div>
             
@@ -146,13 +150,6 @@ const VehicleSidebar = ({ selectedVehicle, onVehicleSelect }: VehicleSidebarProp
       {/* Activities and History Tabs */}
       <div className="flex-1 overflow-y-auto">
         <div className="p-4">
-          <Button 
-            className="w-full mb-4 bg-green-600 hover:bg-green-700"
-            size="sm"
-          >
-            CARREGAR ATIVIDADES
-          </Button>
-          
           <Tabs defaultValue="activities" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="activities">Atividades</TabsTrigger>

@@ -84,82 +84,79 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
 
   return (
     <div className="flex-1 flex flex-col bg-gray-100 h-screen">
-      {/* Fixed Map Header */}
-      <div className="fixed top-0 left-0 right-0 bg-black border-b p-2 z-50">
-        <div className="flex items-center justify-center space-x-4">
-          <div className="flex flex-col">
-            <label className="text-white text-xs mb-1">Data/Hora Início *</label>
-            <Input
-              type="text"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              className="w-32 h-6 text-xs bg-white"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="text-white text-xs mb-1">Data/Hora Fim *</label>
-            <Input
-              type="text"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              className="w-32 h-6 text-xs bg-white"
-            />
-          </div>
-          <Button size="sm" variant="outline" className="bg-white/90 backdrop-blur-sm mt-4 h-6 w-6 p-0">
-            <RotateCcw className="w-3 h-3" />
-          </Button>
-        </div>
-      </div>
-
-      {/* Map Container - Independent */}
-      <div className="flex-1 relative overflow-hidden mt-16">
-        {/* Map Controls */}
-        <div className="absolute top-4 right-4 z-10 flex flex-col space-y-2">
-          {/* Location Ping Button */}
-          <div className="group relative">
-            <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
-              <MapPin className="w-5 h-5" />
-              <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
-                LOCALIZAÇÃO PING
-              </span>
+      {/* Map Container with Header */}
+      <div className="flex-1 relative overflow-hidden">
+        {/* Fixed Map Header - Only Map Width */}
+        <div className="absolute top-0 left-0 right-0 bg-black border-b p-2 z-50">
+          <div className="flex items-center justify-center space-x-4">
+            <div className="flex flex-col">
+              <label className="text-white text-xs mb-1">Data/Hora Início *</label>
+              <Input
+                type="text"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="w-32 h-6 text-xs bg-white"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-white text-xs mb-1">Data/Hora Fim *</label>
+              <Input
+                type="text"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="w-32 h-6 text-xs bg-white"
+              />
+            </div>
+            <Button size="sm" variant="outline" className="bg-white/90 backdrop-blur-sm mt-4 h-6 w-6 p-0">
+              <RotateCcw className="w-3 h-3" />
             </Button>
           </div>
+        </div>
+
+        {/* Map Controls - Hover expands all */}
+        <div className="absolute top-20 right-4 z-10 flex flex-col space-y-2 group">
+          {/* Location Ping Button */}
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
+            <MapPin className="w-5 h-5" />
+            <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
+              LOCALIZAÇÃO PING
+            </span>
+          </Button>
           
           {/* Google Maps Button */}
-          <div className="group relative">
-            <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
-              <User className="w-5 h-5" />
-              <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
-                MAPA DO GOOGLE
-              </span>
-            </Button>
-          </div>
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
+            <User className="w-5 h-5" />
+            <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
+              MAPA DO GOOGLE
+            </span>
+          </Button>
           
           {/* Open Chat Button */}
-          <div className="group relative">
-            <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
-              <MessageCircle className="w-5 h-5" />
-              <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
-                ABRIR CHAT
-              </span>
-            </Button>
-          </div>
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
+            <MessageCircle className="w-5 h-5" />
+            <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
+              ABRIR CHAT
+            </span>
+          </Button>
           
           {/* Transfer Service Button */}
-          <div className="group relative">
-            <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
-              <ArrowRightLeft className="w-5 h-5" />
-              <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
-                TRANSFERIR ATENDIMENTO
-              </span>
-            </Button>
-          </div>
+          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
+            <ArrowRightLeft className="w-5 h-5" />
+            <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
+              TRANSFERIR ATENDIMENTO
+            </span>
+          </Button>
         </div>
 
-        {/* Mock Map Display */}
-        <div className="w-full h-full bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
-            <div className="relative w-full h-full bg-green-100/30">
-            {/* Simulated map markers */}
+        {/* Map Image Display */}
+        <div className="w-full h-full pt-16">
+          <img 
+            src="/src/assets/map-demo.jpg" 
+            alt="Vehicle tracking map" 
+            className="w-full h-full object-cover"
+          />
+          
+          {/* Simulated map markers */}
           {vehicleLocations.map((location, index) => (
             <div
               key={location.id}
@@ -167,7 +164,7 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
                 selectedVehicle === location.id ? "scale-125 z-20" : "z-10"
               }`}
               style={{
-                top: `${30 + index * 15}%`,
+                top: `${40 + index * 15}%`,
                 left: `${25 + index * 20}%`,
               }}
             >
@@ -185,8 +182,7 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
 
           {/* Map attribution */}
           <div className="absolute bottom-4 right-4 bg-white/90 px-2 py-1 rounded text-xs text-gray-600">
-            Map demo - Connect Mapbox for full functionality
-            </div>
+            GPS Tracking Demo
           </div>
         </div>
 
