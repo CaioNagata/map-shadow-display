@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { MapPin, Layers, Navigation, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import { MapPin, User, MessageCircle, ArrowRightLeft, RotateCcw } from "lucide-react";
 
 interface MapViewProps {
   selectedVehicle: string | null;
@@ -84,8 +84,8 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
 
   return (
     <div className="flex-1 flex flex-col bg-gray-100 h-screen">
-      {/* Map Header - Independent */}
-      <div className="bg-black border-b p-4 z-10">
+      {/* Fixed Map Header */}
+      <div className="fixed top-0 left-0 right-0 bg-black border-b p-2 z-50">
         <div className="flex items-center justify-center space-x-4">
           <div className="flex flex-col">
             <label className="text-white text-xs mb-1">Data/Hora Início *</label>
@@ -93,7 +93,7 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
               type="text"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="w-32 h-8 text-xs bg-white"
+              className="w-32 h-6 text-xs bg-white"
             />
           </div>
           <div className="flex flex-col">
@@ -102,34 +102,58 @@ const MapView = ({ selectedVehicle }: MapViewProps) => {
               type="text"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="w-32 h-8 text-xs bg-white"
+              className="w-32 h-6 text-xs bg-white"
             />
           </div>
-          <Button size="sm" variant="outline" className="bg-white/90 backdrop-blur-sm mt-4">
-            <RotateCcw className="w-4 h-4" />
+          <Button size="sm" variant="outline" className="bg-white/90 backdrop-blur-sm mt-4 h-6 w-6 p-0">
+            <RotateCcw className="w-3 h-3" />
           </Button>
         </div>
       </div>
 
       {/* Map Container - Independent */}
-      <div className="flex-1 relative overflow-hidden">
+      <div className="flex-1 relative overflow-hidden mt-16">
         {/* Map Controls */}
         <div className="absolute top-4 right-4 z-10 flex flex-col space-y-2">
-          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
-            <MapPin className="w-5 h-5" />
-          </Button>
-          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
-            <Navigation className="w-5 h-5" />
-          </Button>
-          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
-            <ZoomIn className="w-5 h-5" />
-          </Button>
-          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
-            <ZoomOut className="w-5 h-5" />
-          </Button>
-          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12">
-            <Layers className="w-5 h-5" />
-          </Button>
+          {/* Location Ping Button */}
+          <div className="group relative">
+            <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
+              <MapPin className="w-5 h-5" />
+              <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
+                LOCALIZAÇÃO PING
+              </span>
+            </Button>
+          </div>
+          
+          {/* Google Maps Button */}
+          <div className="group relative">
+            <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
+              <User className="w-5 h-5" />
+              <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
+                MAPA DO GOOGLE
+              </span>
+            </Button>
+          </div>
+          
+          {/* Open Chat Button */}
+          <div className="group relative">
+            <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
+              <MessageCircle className="w-5 h-5" />
+              <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
+                ABRIR CHAT
+              </span>
+            </Button>
+          </div>
+          
+          {/* Transfer Service Button */}
+          <div className="group relative">
+            <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white w-12 h-12 group-hover:w-auto group-hover:px-4 transition-all duration-300">
+              <ArrowRightLeft className="w-5 h-5" />
+              <span className="ml-2 opacity-0 group-hover:opacity-100 whitespace-nowrap text-sm font-medium overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-300">
+                TRANSFERIR ATENDIMENTO
+              </span>
+            </Button>
+          </div>
         </div>
 
         {/* Mock Map Display */}
